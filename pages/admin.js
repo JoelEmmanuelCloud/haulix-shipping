@@ -1,4 +1,3 @@
-// pages/admin.js
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import axios from 'axios';
@@ -32,7 +31,7 @@ export default function AdminDashboard() {
       return;
     }
     fetchOrders();
-  }, []);
+  }, [router]);
 
   const fetchOrders = async () => {
     try {

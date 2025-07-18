@@ -1,5 +1,5 @@
-// components/Forms/TrackingForm.js
 import { useState } from 'react';
+import Link from 'next/link';
 import { FaSearch, FaBarcode } from 'react-icons/fa';
 import Button from '../UI/Button';
 import Input from '../UI/Input';
@@ -66,10 +66,10 @@ export default function TrackingForm({ onTrack, loading = false, initialValue = 
 
         <div className="text-center">
           <p className="text-sm text-gray-500">
-            Don't have a tracking number?{' '}
-            <a href="/ship" className="text-blue-600 hover:text-blue-500 font-medium">
+            Don&apos;t have a tracking number?{' '}
+            <Link href="/ship" className="text-blue-600 hover:text-blue-500 font-medium">
               Create a shipment
-            </a>
+            </Link>
           </p>
         </div>
       </form>

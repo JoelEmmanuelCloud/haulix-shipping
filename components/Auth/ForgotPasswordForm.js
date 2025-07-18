@@ -1,4 +1,3 @@
-// components/Auth/ForgotPasswordForm.js
 import { useState } from 'react';
 import axios from 'axios';
 import toast from 'react-hot-toast';
@@ -98,7 +97,7 @@ export default function ForgotPasswordForm() {
             Forgot Password
           </h2>
           <p className="mt-2 text-sm text-gray-600">
-            Enter your email address and we'll send you a reset link
+            Enter your email address and we&apos;ll send you a reset link
           </p>
         </div>
         
@@ -135,7 +134,7 @@ export default function ForgotPasswordForm() {
             Check Your Email
           </h2>
           <p className="mt-2 text-sm text-gray-600">
-            We've sent a 6-digit code to {formData.email}
+            We&apos;ve sent a 6-digit code to {formData.email}
           </p>
         </div>
         

@@ -1,11 +1,7 @@
-// next.config.js
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  // Explicitly force Pages Router for Next.js 15
-  experimental: {
-    appDir: false,
-  },
+  
   // Configure images
   images: {
     remotePatterns: [
@@ -15,12 +11,7 @@ const nextConfig = {
       },
     ],
   },
-  // API configuration
-  api: {
-    bodyParser: {
-      sizeLimit: '10mb',
-    },
-  },
+  
   // Handle CORS for development
   async headers() {
     return [
@@ -35,6 +26,7 @@ const nextConfig = {
       },
     ];
   },
+  
   // Webpack configuration for compatibility
   webpack: (config, { isServer }) => {
     if (!isServer) {

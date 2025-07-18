@@ -1,4 +1,3 @@
-// pages/register.js
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
@@ -237,7 +236,7 @@ export default function Register() {
               </div>
               <h2 className="text-2xl font-bold text-gray-900 mb-2">Verify Your Email</h2>
               <p className="text-gray-600">
-                We've sent a 6-digit verification code to{' '}
+                We&apos;ve sent a 6-digit verification code to{' '}
                 <span className="font-medium text-gray-900">{formData.email}</span>
               </p>
             </div>
@@ -285,7 +284,7 @@ export default function Register() {
 
               <div className="mt-6 text-center">
                 <p className="text-sm text-gray-600">
-                  Didn't receive the code?{' '}
+                  Didn&apos;t receive the code?{' '}
                   <button 
                     onClick={resendOTP}
                     className="font-medium text-blue-600 hover:text-blue-500"
@@ -688,7 +687,7 @@ export default function Register() {
                         onChange={handleChange}
                         className="block w-full px-3 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                       >
-                        {COUNTRIES.map((country) => (
+                        {COUNTRIES && COUNTRIES.map((country) => (
                           <option key={country.code} value={country.name}>
                             {country.flag} {country.name}
                           </option>

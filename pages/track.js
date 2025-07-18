@@ -1,5 +1,4 @@
-// pages/track.js
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useRouter } from 'next/router';
 import axios from 'axios';
 import toast from 'react-hot-toast';
@@ -11,15 +10,7 @@ export default function Track() {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
-  useEffect(() => {
-    const { tracking } = router.query;
-    if (tracking) {
-      setTrackingNumber(tracking);
-      handleTrack(tracking);
-    }
-  }, [router.query]);
-
-  const handleTrack = async (tracking = trackingNumber) => {
+  const handleTrack = useCallback(async (tracking = trackingNumber) => {
     if (!tracking.trim()) {
       toast.error('Please enter a tracking number');
       return;
@@ -35,7 +26,15 @@ export default function Track() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [trackingNumber]);
+
+  useEffect(() => {
+    const { tracking } = router.query;
+    if (tracking) {
+      setTrackingNumber(tracking);
+      handleTrack(tracking);
+    }
+  }, [router.query, handleTrack]);
 
   const getStatusIcon = (status) => {
     switch (status) {

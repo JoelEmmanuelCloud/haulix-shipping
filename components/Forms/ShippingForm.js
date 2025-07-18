@@ -1,4 +1,3 @@
-// components/Forms/ShippingForm.js
 import { useState, useEffect } from 'react';
 import { FaBox, FaMapMarkerAlt, FaWeightHanging, FaDollarSign } from 'react-icons/fa';
 import Button from '../UI/Button';
@@ -59,7 +58,7 @@ export default function ShippingForm({ onSubmit, loading = false }) {
       const weightMultiplier = Math.max(1, Math.ceil(formData.packageInfo.weight / 1000));
       setEstimatedCost(baseRate * weightMultiplier);
     }
-  }, [formData.packageInfo.weight, formData.shippingService]);
+  }, [formData.packageInfo.weight, formData.shippingService, shippingCosts]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
