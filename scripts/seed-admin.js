@@ -29,7 +29,7 @@ const Admin = mongoose.model('Admin', adminSchema);
 async function cleanupAndCreateAdmin() {
   try {
     // Connect to MongoDB
-    await mongoose.connect('mongodb+srv://newuser:Pampersbaby@cluster0.olifzgj.mongodb.net/haulix?retryWrites=true&w=majority&appName=Cluster0');
+    await mongoose.connect('mongodb+srv);
     console.log('Connected to MongoDB');
 
     // Clean up existing admin entries
