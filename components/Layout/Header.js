@@ -61,8 +61,17 @@ export default function Header() {
     router.push('/');
   };
 
+  const handleMenuClick = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
+  // Close menu when clicking on a link (for mobile)
+  const handleLinkClick = () => {
+    setIsMenuOpen(false);
+  };
+
   return (
-    <header className="bg-white shadow-md sticky top-0 z-50">
+    <header className="bg-white shadow-md sticky top-0 z-50 relative">
       <div className="max-w-6xl mx-auto px-4">
         <div className="flex justify-between items-center h-16">
           {/* Logo - Updated with better alignment */}
@@ -114,47 +123,76 @@ export default function Header() {
 
           {/* Mobile menu button */}
           <button
-            className="md:hidden"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            className="md:hidden z-60 relative"
+            onClick={handleMenuClick}
           >
             {isMenuOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
           </button>
         </div>
 
-        {/* Mobile Navigation */}
+        {/* Mobile Navigation - Now positioned as overlay */}
         {isMenuOpen && (
-          <nav className="md:hidden pb-4 space-y-2">
-            <Link href="/" className="block py-2 text-gray-700 hover:text-blue-600">
-              Home
-            </Link>
-            <Link href="/ship" className="block py-2 text-gray-700 hover:text-blue-600">
-              Ship
-            </Link>
-            <Link href="/track" className="block py-2 text-gray-700 hover:text-blue-600">
-              Track
-            </Link>
-            {isLoggedIn ? (
-              <>
-                <Link href="/dashboard" className="block py-2 text-gray-700 hover:text-blue-600">
-                  Dashboard
-                </Link>
-                <button
-                  onClick={handleLogout}
-                  className="block py-2 text-gray-700 hover:text-blue-600 w-full text-left"
-                >
-                  Logout
-                </button>
-              </>
-            ) : (
-              <>
-                <Link href="/login" className="block py-2 text-gray-700 hover:text-blue-600">
-                  Login
-                </Link>
-                <Link href="/register" className="block py-2 bg-blue-600 text-white px-4 rounded-md hover:bg-blue-700">
-                  Register
-                </Link>
-              </>
-            )}
+          <nav className="md:hidden absolute top-full left-0 right-0 bg-white shadow-lg border-t border-gray-200 z-40">
+            <div className="px-4 py-4 space-y-2">
+              <Link 
+                href="/" 
+                className="block py-3 text-gray-700 hover:text-blue-600 border-b border-gray-100"
+                onClick={handleLinkClick}
+              >
+                Home
+              </Link>
+              <Link 
+                href="/ship" 
+                className="block py-3 text-gray-700 hover:text-blue-600 border-b border-gray-100"
+                onClick={handleLinkClick}
+              >
+                Ship
+              </Link>
+              <Link 
+                href="/track" 
+                className="block py-3 text-gray-700 hover:text-blue-600 border-b border-gray-100"
+                onClick={handleLinkClick}
+              >
+                Track
+              </Link>
+              {isLoggedIn ? (
+                <>
+                  <Link 
+                    href="/dashboard" 
+                    className="block py-3 text-gray-700 hover:text-blue-600 border-b border-gray-100"
+                    onClick={handleLinkClick}
+                  >
+                    Dashboard
+                  </Link>
+                  <button
+                    onClick={() => {
+                      handleLogout();
+                      handleLinkClick();
+                    }}
+                    className="block py-3 text-gray-700 hover:text-blue-600 w-full text-left border-b border-gray-100"
+                  >
+                    Logout
+                  </button>
+                </>
+              ) : (
+                <>
+                  <Link 
+                    href="/login" 
+                    className="block py-3 text-gray-700 hover:text-blue-600 border-b border-gray-100"
+                    onClick={handleLinkClick}
+                  >
+                    Login
+                  </Link>
+                  <Link 
+                    href="/register" 
+                    className="block py-3 mt-2 bg-blue-600 text-white px-4 rounded-md hover:bg-blue-700 text-center"
+                    onClick={handleLinkClick}
+                  >
+                    Register
+                  </Link>
+                </>
+              )}
+            </div>
           </nav>
         )}
       </div>
